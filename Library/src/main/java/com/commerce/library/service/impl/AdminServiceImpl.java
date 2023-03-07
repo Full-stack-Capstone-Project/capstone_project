@@ -10,7 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -33,7 +32,7 @@ public class AdminServiceImpl implements AdminService {
         admin.setLastname(adminDao.getLastName());
         admin.setUsername(adminDao.getUsername());
         admin.setPassword(adminDao.getPassword());
-        admin.setRoles(Collections.singletonList(roleRepository.findByName("ADMIN")));
+        admin.setRoles(Arrays.asList(roleRepository.findByName("ADMIN")));
         return adminRepository.save(admin);
     }
 }
