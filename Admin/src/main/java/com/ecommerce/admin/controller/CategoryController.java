@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -44,6 +42,51 @@ public class CategoryController {
         }
 
 //        after added back to categories page
+        return "redirect:/categories";
+    }
+
+    @RequestMapping(value = "/findById", method = {RequestMethod.PUT, RequestMethod.GET})
+    @ResponseBody
+    public Category findById(Long id){
+        return categoryService.findById(id);
+    }
+
+    @GetMapping("/update-category")
+    public String update(Category category, RedirectAttributes attributes){
+        try {
+            categoryService.update(category);
+            attributes.addFlashAttribute("success","Updated successfully");
+        }catch (DataIntegrityViolationException e){
+            e.printStackTrace();
+            attributes.addFlashAttribute("failed","Name already exists, please try again");
+        }catch (Exception e){
+            e.printStackTrace();
+            attributes.addFlashAttribute("failed","Error");
+        }
+        return "redirect:/categories";
+    }
+
+    @RequestMapping(value = "/delete-category", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String delete(Long id, RedirectAttributes attributes){
+        try {
+            categoryService.deleteById(id);
+            attributes.addFlashAttribute("success", "Category deleted successfully");
+        }catch (Exception e){
+            e.printStackTrace();
+            attributes.addFlashAttribute("failed","Failed to deleted");
+        }
+        return "redirect:/categories";
+    }
+
+    @RequestMapping(value = "/enable-category", method = {RequestMethod.PUT, RequestMethod.GET})
+    public String enable(Long id, RedirectAttributes attributes){
+        try {
+            categoryService.enabledById(id);
+            attributes.addFlashAttribute("success", "Category enabled successfully");
+        }catch (Exception e){
+            e.printStackTrace();
+            attributes.addFlashAttribute("failed", "Failed to enabled");
+        }
         return "redirect:/categories";
     }
 }

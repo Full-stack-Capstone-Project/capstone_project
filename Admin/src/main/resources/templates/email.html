@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta charset="UTF-8"/>
+  <title>Sending Email</title>
+  <link rel="stylesheet" href="../static/css/email.css">
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
-$END$
+<h1>Send Email</h1>
+<form action="#" class="form-contact">
+  <input id="name" type="text" placeholder="Enter your name...">
+  <input id="email" type="email" placeholder="Enter Email...">
+  <input id="phone" type="text" placeholder="Enter Phone number...">
+  <textarea name="" id="msg" placeholder="Enter Contact..." cols="30" rows="10"></textarea>
+  <input id="submit" type="submit">
+</form>
+
+<script src="../static/js/email.js"></script>
 </body>
 </html>
