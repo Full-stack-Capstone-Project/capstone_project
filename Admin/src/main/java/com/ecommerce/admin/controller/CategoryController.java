@@ -6,7 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
+=======
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+>>>>>>> 58959b96817a80fd153dc69b31cbe4da94c6cbfa
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -44,6 +50,7 @@ public class CategoryController {
 //        after added back to categories page
         return "redirect:/categories";
     }
+<<<<<<< HEAD
 
     @RequestMapping(value = "/findById", method = {RequestMethod.PUT, RequestMethod.GET})
     @ResponseBody
@@ -89,4 +96,6 @@ public class CategoryController {
         }
         return "redirect:/categories";
     }
+=======
+>>>>>>> 58959b96817a80fd153dc69b31cbe4da94c6cbfa
 }
